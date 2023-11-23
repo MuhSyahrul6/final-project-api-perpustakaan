@@ -28,6 +28,9 @@ kategoriController.create = async (req, res) => {
 }
 
 kategoriController.getAll = async (req, res) => {
+    const getKategori = await Kategori.findAll({
+
+    })
 
 }
 
