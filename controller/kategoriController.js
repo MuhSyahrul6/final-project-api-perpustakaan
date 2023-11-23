@@ -27,5 +27,9 @@ kategoriController.create = async (req, res) => {
     }
 }
 
+kategoriController.getAll = async (req, res) => {
+
+}
+
 module.exports = kategoriController
 
