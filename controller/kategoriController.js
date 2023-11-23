@@ -1,3 +1,4 @@
+const { Kategori } = require("../models")
 const kategoriController = {}
 
 /*
