@@ -71,6 +71,11 @@ kategoriController.getById = async (req, res) => {
 kategoriController.update = async (req, res) => {
     const { nama_kategori } = req.body
     const id = req.params.id
+    if (typeof nama_kategori !== 'string' || nama_kategori.trim() == '') {
+        return res.status(400).json({
+            error: 'Nama Kategori harus berupa huruf dan wajib diisi !'
+        })
+    }
     try {
         const getDetailKategori = await Kategori.findOne({
             where: {
