@@ -72,6 +72,21 @@ kategoriController.update = async (req, res) => {
             id: id
         }
     })
+    if (getDetailKategori === null) {
+        return res.status(404).json({
+            message: 'Data Tidak Ada !'
+        })
+    }
+    const updateKategori = await Kategori.update({
+        nama_kategori: nama_kategori
+    }, {
+        where: {
+            id: id
+        }
+    })
+    return res.status(200).json({
+        message: 'Data Berhasil Diubah !'
+    })
 }
 
 module.exports = kategoriController
