@@ -44,7 +44,15 @@ kategoriController.getAll = async (req, res) => {
 }
 
 kategoriController.getById = async (req, res) => {
-
+    const { id } = req.params
+    const getDetailKategori = await Kategori.findOne({
+        where: {
+            id: id
+        }
+    })
+    return res.status(200).json({
+        data: getDetailKategori
+    })
 }
 
 module.exports = kategoriController
