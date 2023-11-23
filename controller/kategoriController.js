@@ -31,6 +31,9 @@ kategoriController.getAll = async (req, res) => {
     const getKategori = await Kategori.findAll({
         order: [["createdAt", "DESC"]]
     })
+    return res.status(200).json({
+        data: getKategori
+    })
 
 }
 
