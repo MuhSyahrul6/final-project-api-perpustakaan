@@ -63,5 +63,9 @@ kategoriController.getById = async (req, res) => {
     }
 }
 
+kategoriController.update = async (req, res) => {
+
+}
+
 module.exports = kategoriController
 
