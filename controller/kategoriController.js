@@ -98,15 +98,21 @@ kategoriController.update = async (req, res) => {
 
 kategoriController.delete = async (req, res) => {
     const { id } = req.params
-
-    const deleteKategori = await Kategori.destroy({
-        where: {
-            id: id
-        }
-    })
-    return res.status(200).json({
-        message: 'Data Berhasil Dihapus !'
-    })
+    try {
+        const deleteKategori = await Kategori.destroy({
+            where: {
+                id: id
+            }
+        })
+        return res.status(200).json({
+            message: 'Data Berhasil Dihapus !'
+        })
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({
+            message: error
+        })
+    }
 }
 
 module.exports = kategoriController
