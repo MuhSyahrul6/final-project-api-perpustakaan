@@ -64,7 +64,14 @@ kategoriController.getById = async (req, res) => {
 }
 
 kategoriController.update = async (req, res) => {
+    const { nama_kategori } = req.body
+    const id = req.params.id
 
+    const getDetailKategori = await Kategori.findOne({
+        where: {
+            id: id
+        }
+    })
 }
 
 module.exports = kategoriController
