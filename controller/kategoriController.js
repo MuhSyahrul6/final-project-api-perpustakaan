@@ -66,27 +66,34 @@ kategoriController.getById = async (req, res) => {
 kategoriController.update = async (req, res) => {
     const { nama_kategori } = req.body
     const id = req.params.id
-
-    const getDetailKategori = await Kategori.findOne({
-        where: {
-            id: id
+    try {
+        const getDetailKategori = await Kategori.findOne({
+            where: {
+                id: id
+            }
+        })
+        if (getDetailKategori === null) {
+            return res.status(404).json({
+                message: 'Data Tidak Ada !'
+            })
         }
-    })
-    if (getDetailKategori === null) {
-        return res.status(404).json({
-            message: 'Data Tidak Ada !'
+        const updateKategori = await Kategori.update({
+            nama_kategori: nama_kategori
+        }, {
+            where: {
+                id: id
+            }
+        })
+        return res.status(200).json({
+            message: 'Data Berhasil Diubah !'
+        })
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({
+            message: error
         })
     }
-    const updateKategori = await Kategori.update({
-        nama_kategori: nama_kategori
-    }, {
-        where: {
-            id: id
-        }
-    })
-    return res.status(200).json({
-        message: 'Data Berhasil Diubah !'
-    })
+
 }
 
 module.exports = kategoriController
