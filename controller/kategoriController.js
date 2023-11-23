@@ -96,5 +96,9 @@ kategoriController.update = async (req, res) => {
 
 }
 
+kategoriController.delete = async (req, res) => {
+
+}
+
 module.exports = kategoriController
 
