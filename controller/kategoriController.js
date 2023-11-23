@@ -28,13 +28,19 @@ kategoriController.create = async (req, res) => {
 }
 
 kategoriController.getAll = async (req, res) => {
-    const getKategori = await Kategori.findAll({
-        order: [["createdAt", "DESC"]]
-    })
-    return res.status(200).json({
-        data: getKategori
-    })
-
+    try {
+        const getKategori = await Kategori.findAll({
+            order: [["createdAt", "DESC"]]
+        })
+        return res.status(200).json({
+            data: getKategori
+        })
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({
+            message: error
+        })
+    }
 }
 
 module.exports = kategoriController
