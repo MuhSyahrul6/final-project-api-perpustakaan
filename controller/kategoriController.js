@@ -43,5 +43,9 @@ kategoriController.getAll = async (req, res) => {
     }
 }
 
+kategoriController.getById = async (req, res) => {
+
+}
+
 module.exports = kategoriController
 
