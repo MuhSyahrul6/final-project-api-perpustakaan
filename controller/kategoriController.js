@@ -97,7 +97,16 @@ kategoriController.update = async (req, res) => {
 }
 
 kategoriController.delete = async (req, res) => {
+    const { id } = req.params
 
+    const deleteKategori = await Kategori.destroy({
+        where: {
+            id: id
+        }
+    })
+    return res.status(200).json({
+        message: 'Data Berhasil Dihapus !'
+    })
 }
 
 module.exports = kategoriController
