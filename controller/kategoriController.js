@@ -13,6 +13,11 @@ kategoriController.index = async (req, res) => {
 
 kategoriController.create = async (req, res) => {
     const { nama_kategori } = req.body
+    if (typeof nama_kategori !== 'string' || nama_kategori.trim() == '') {
+        return res.status(400).json({
+            error: 'Nama Kategori harus berupa huruf dan wajib diisi !'
+        })
+    }
     try {
         const createKategori = await Kategori.create({
             nama_kategori: nama_kategori
