@@ -1,11 +1,10 @@
-# Boilerplate Framework Backend Bootcamp Vocasia
+# Final Project API Perpustakaan
 
 ## Overview
- Project ini sebagai acuan untuk mengerjakan project selama bootcamp berlangsung.framework ini menggunakan basic structure MVC(Model View Controller) untuk mempermudah pengerjaan project.Struktur dari project ini terinspirasi dari Laravel framework.
+ LibraryKu Merupakan sebuah Sistem API Perpustakaan yang dirancang sebagai solusi komprehensif untuk memenuhi kebutuhan manajemen perpustakaan modern.
 
 ### How To Use ?
-* silahkan `use this template`
-* kemudian jalankan 
+* jalankan perintah berikut 
 
 ```bash
 npm install
@@ -43,13 +42,6 @@ npm run start
 ```
 http://localhost:3000/
 ```
-jika berhasil akan muncul seperti ini : 
-```json
-{
-    "message" : "Hello exampleController"
-}
-```
-
 ### How To Generate Controller Automatic ?
 * untuk membuat controller secara otomatis silahkan jalankan skrip berikut di terminal :
   ```
@@ -61,3 +53,9 @@ jika berhasil akan muncul seperti ini :
 * Sequelize
 * Nodemon
 * mysql2
+# Group Members
+* Muhammad Syahrul Romadhon
+* Muhammad Daffa Yuza
+* Madwa Razami
+* Nia Damayanti
+* Ahmad Syaeful Hidayat
