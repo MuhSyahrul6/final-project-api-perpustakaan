@@ -1,16 +1,6 @@
 const { Kategori } = require("../models")
 const kategoriController = {}
 
-/*
-    this is auto generate example, you can continue 
-
-*/
-kategoriController.index = async (req, res) => {
-    res.json({
-        message: "Hello kategoriController"
-    })
-}
-
 kategoriController.create = async (req, res) => {
     const { nama_kategori } = req.body
     if (typeof nama_kategori !== 'string' || nama_kategori.trim() == '') {
