@@ -17,7 +17,7 @@ penulisController.create = async (req,res) => {
     const {nama_penulis,tanggal_lahir,negara_asal} = req.body
     if (typeof nama_penulis !== 'string' || nama_penulis.trim() == '') {
         return res.status(400).json({
-            error: 'Nama Kategori harus berupa huruf dan wajib diisi !'
+            error: 'Nama Penulis harus berupa huruf dan wajib diisi !'
         })
     }
     try {
@@ -77,7 +77,7 @@ penulisController.update = async (req,res) => {
     const id = req.params.id
     if (typeof nama_penulis !== 'string' || nama_penulis.trim() == '') {
         return res.status(400).json({
-            error: 'Nama Kategori harus berupa huruf dan wajib diisi !'
+            error: 'Nama Penulis harus berupa huruf dan wajib diisi !'
         })
     }
     try {
