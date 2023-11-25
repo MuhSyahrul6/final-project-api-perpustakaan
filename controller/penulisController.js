@@ -15,6 +15,11 @@ penulisController.index = async(req,res) => {
 //tambah data penulis
 penulisController.create = async (req,res) => {
     const {nama_penulis,tanggal_lahir,negara_asal} = req.body
+    if (typeof nama_penulis !== 'string' || nama_penulis.trim() == '') {
+        return res.status(400).json({
+            error: 'Nama Kategori harus berupa huruf dan wajib diisi !'
+        })
+    }
     try {
         const createPenulis = await Penulis.create({
             nama_penulis     : nama_penulis,
@@ -70,6 +75,11 @@ penulisController.getById = async (req,res) => {
 penulisController.update = async (req,res) => {
     const {nama_penulis,tanggal_lahir,negara_asal} = req.body
     const id = req.params.id
+    if (typeof nama_penulis !== 'string' || nama_penulis.trim() == '') {
+        return res.status(400).json({
+            error: 'Nama Kategori harus berupa huruf dan wajib diisi !'
+        })
+    }
     try {
         const getDetailPnl = await Penulis.findOne({
             where: {
