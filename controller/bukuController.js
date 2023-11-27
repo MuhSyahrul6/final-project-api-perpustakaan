@@ -53,12 +53,12 @@ bukuController.getAll = async (req, res) => {
       include: [
         {
           model: Penulis,
-          as : 'Penulis Buku'
+          as: 'Penulis Buku',
         },
         {
           model: Kategori,
-          as : 'Kategori Buku'
-        }
+          as: 'Kategori Buku',
+        },
       ],
     });
     return res.status(200).json({
@@ -79,12 +79,12 @@ bukuController.getById = async (req, res) => {
       include: [
         {
           model: Penulis,
-          as: 'Penulis Buku'
+          as: 'Penulis Buku',
         },
         {
           model: Kategori,
-          as: 'Kategori Buku'
-        }
+          as: 'Kategori Buku',
+        },
       ],
       where: {
         id: id,
@@ -100,5 +100,49 @@ bukuController.getById = async (req, res) => {
   }
 };
 
+bukuController.update = async (req, res) => {
+  const { judul, id_penulis, penerbit, tahun_terbit, jumlah_salinan, id_kategori } = req.body;
+  const { id } = req.params;
+
+  try {
+    const getBuku = await Buku.findOne({
+      where: {
+        id,
+      },
+    });
+    const getPenulis = await Penulis.findOne({
+      where: {
+        id: id_penulis,
+      },
+    });
+    const getKategori = await Kategori.findOne({
+      where: {
+        id: id_kategori,
+      },
+    });
+    const createBuku = await Buku.update(
+      {
+        judul,
+        id_penulis,
+        penerbit,
+        tahun_terbit,
+        jumlah_salinan,
+        id_kategori,
+      },
+      {
+        where: {
+          id,
+        },
+      }
+    );
+    return res.status(201).json({
+      message: 'Data berhasil diubah !',
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: error.message,
+    });
+  }
+};
 
 module.exports = bukuController;
