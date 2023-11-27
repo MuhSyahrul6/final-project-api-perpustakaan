@@ -74,7 +74,7 @@ kategoriController.update = async (req, res) => {
         })
         if (getDetailKategori === null) {
             return res.status(404).json({
-                message: 'Data Tidak Ada !'
+                message: 'Data tidak ditemukan!'
             })
         }
         const updateKategori = await Kategori.update({
@@ -104,6 +104,11 @@ kategoriController.delete = async (req, res) => {
                 id: id
             }
         })
+        if (!deleteKategori) {
+            return res.status(404).json({
+                message: 'Data tidak ditemukan!'
+            })
+        }
         return res.status(200).json({
             message: 'Data Berhasil Dihapus !'
         })
