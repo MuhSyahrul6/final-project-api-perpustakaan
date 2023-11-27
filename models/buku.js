@@ -11,6 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Buku.belongsTo(models.Penulis, { foreignKey: 'id_penulis', as: 'Penulis Buku'})
+      Buku.belongsTo(models.Kategori, { foreignKey: 'id_kategori', as: 'Kategori Buku'})
     }
   }
   Buku.init({
@@ -20,7 +22,8 @@ module.exports = (sequelize, DataTypes) => {
       references: {
         model: 'Penulis',
         key: 'id'
-      }
+      },
+      field: 'id_penulis'
     },
     penerbit: DataTypes.STRING,
     tahun_terbit: DataTypes.INTEGER,
@@ -30,7 +33,8 @@ module.exports = (sequelize, DataTypes) => {
       references: {
         model: 'Kategoris',
         key: 'id'
-      }
+      },
+      field: 'id_kategori'
     },
   }, {
     sequelize,

@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Kategori.belongsToMany(models.Penulis,{through : 'Buku',foreignKey : 'id_kategori'});
+      Kategori.hasMany(models.Buku, { foreignKey: 'id_kategori' });
     }
   }
   Kategori.init({

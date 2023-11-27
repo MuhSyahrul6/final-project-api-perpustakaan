@@ -49,14 +49,19 @@ bukuController.create = async (req, res) => {
 
 bukuController.getAll = async (req, res) => {
   try {
-    const getBuku = await Kategori.findAll({
+    const getBuku = await Buku.findAll({
       include: [
         {
           model: Penulis,
+          as : 'Penulis Buku'
         },
+        {
+          model: Kategori,
+          as : 'Kategori Buku'
+        }
       ],
     });
-    res.json({
+    return res.status(200).json({
       data: getBuku,
     });
   } catch (error) {
@@ -70,17 +75,22 @@ bukuController.getById = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const getBuku = await Kategori.findOne({
+    const getBuku = await Buku.findOne({
       include: [
         {
           model: Penulis,
+          as: 'Penulis Buku'
         },
+        {
+          model: Kategori,
+          as: 'Kategori Buku'
+        }
       ],
       where: {
         id: id,
       },
     });
-    res.json({
+    return res.status(200).json({
       data: getBuku,
     });
   } catch (error) {
