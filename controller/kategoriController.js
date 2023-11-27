@@ -90,7 +90,7 @@ kategoriController.update = async (req, res) => {
     } catch (error) {
         console.log(error)
         return res.status(500).json({
-            message: error
+            message: error.message
         })
     }
 
