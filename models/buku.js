@@ -15,11 +15,23 @@ module.exports = (sequelize, DataTypes) => {
   }
   Buku.init({
     judul: DataTypes.STRING,
-    id_penulis: DataTypes.INTEGER,
+    id_penulis: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'Penulis',
+        key: 'id'
+      }
+    },
     penerbit: DataTypes.STRING,
     tahun_terbit: DataTypes.INTEGER,
     jumlah_salinan: DataTypes.INTEGER,
-    id_kategori: DataTypes.INTEGER
+    id_kategori: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'Kategoris',
+        key: 'id'
+      }
+    },
   }, {
     sequelize,
     modelName: 'Buku',
