@@ -120,24 +120,30 @@ bukuController.update = async (req, res) => {
         id: id_kategori,
       },
     });
-    const createBuku = await Buku.update(
-      {
-        judul,
-        id_penulis,
-        penerbit,
-        tahun_terbit,
-        jumlah_salinan,
-        id_kategori,
-      },
-      {
-        where: {
-          id,
+    if (!getBuku || !getPenulis || !getKategori) {
+      return res.status(404).json({
+        message: 'Data tidak ditemukan!' 
+      })
+    } else {
+      const createBuku = await Buku.update(
+        {
+          judul,
+          id_penulis,
+          penerbit,
+          tahun_terbit,
+          jumlah_salinan,
+          id_kategori,
         },
-      }
-    );
-    return res.status(201).json({
-      message: 'Data berhasil diubah !',
-    });
+        {
+          where: {
+            id,
+          },
+        }
+      );
+      return res.status(201).json({
+        message: 'Data berhasil diubah !',
+      });
+    }
   } catch (error) {
     return res.status(500).json({
       message: error.message,
@@ -154,6 +160,11 @@ bukuController.delete = async (req, res) => {
         id,
       },
     });
+    if (!deleteBuku) {
+      return res.status(404).json({
+        message: 'Data tidak ditemukan!'
+      })
+    }
     return res.status(200).json({
       message: 'Data berhasil dihapus !',
     });
