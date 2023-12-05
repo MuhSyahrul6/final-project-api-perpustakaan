@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Kategori extends Model {
+  class Denda extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,17 +11,23 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Kategori.hasMany(models.Buku,
-        {
-          foreignKey: 'id_kategori'
-        });
+      Denda.belongsTo(models.Peminjaman, { foreignKey: 'id_peminjaman' });
     }
   }
-  Kategori.init({
-    nama_kategori: DataTypes.STRING
+  Denda.init({
+    nominal: DataTypes.FLOAT,
+    tanggal_bayar: DataTypes.DATE,
+    id_peminjaman: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'Peminjaman',
+        key: 'id'
+      },
+      field: 'id_peminjaman'
+    },
   }, {
     sequelize,
-    modelName: 'Kategori',
+    modelName: 'Denda',
   });
-  return Kategori;
+  return Denda;
 };
