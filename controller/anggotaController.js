@@ -36,9 +36,10 @@ anggotaController.create = async (req, res) => {
             message: 'Data Berhasil Ditambahkan !'
         })
     } catch (error) {
-        console.log(error)
+        console.log(error);
         return res.status(500).json({
-            message: error
+            error: 'Internal Server Error',
+            message: error.message
         })
     }
 }
@@ -52,9 +53,10 @@ anggotaController.getAll = async (req, res) => {
             data: getAnggota
         })
     } catch (error) {
-        console.log(error)
+        console.log(error);
         return res.status(500).json({
-            message: error
+            error: 'Internal Server Error',
+            message: error.message
         })
     }
 }
@@ -67,13 +69,19 @@ anggotaController.getById = async (req, res) => {
                 id: id
             }
         })
+        if (!getDetailAnggota) {
+            return res.status(404).json({
+                message: 'Data Tidak ditemukan !',
+            });
+        }
         return res.status(200).json({
             data: getDetailAnggota
         })
     } catch (error) {
-        console.log(error)
+        console.log(error);
         return res.status(500).json({
-            message: error
+            error: 'Internal Server Error',
+            message: error.message
         })
     }
 }
@@ -101,7 +109,7 @@ anggotaController.update = async (req, res) => {
         })
         if (getDetailAnggota === null) {
             return res.status(404).json({
-                message: 'Data Tidak Ada !'
+                message: 'Data Tidak ditemukan !'
             })
         }
         const updateAnggota = await Anggota.update({
@@ -118,9 +126,10 @@ anggotaController.update = async (req, res) => {
             message: 'Data Berhasil Diubah !'
         })
     } catch (error) {
-        console.log(error)
+        console.log(error);
         return res.status(500).json({
-            message: error
+            error: 'Internal Server Error',
+            message: error.message
         })
     }
 }
@@ -133,13 +142,19 @@ anggotaController.delete = async (req, res) => {
                 id: id
             }
         })
+        if (!deleteAnggota) {
+            return res.status(404).json({
+                message: 'Data tidak ditemukan!'
+            })
+        }
         return res.status(200).json({
             message: 'Data Berhasil Dihapus !'
         })
     } catch (error) {
-        console.log(error)
+        console.log(error);
         return res.status(500).json({
-            message: error
+            error: 'Internal Server Error',
+            message: error.message
         })
     }
 }
