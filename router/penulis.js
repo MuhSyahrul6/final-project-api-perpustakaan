@@ -1,11 +1,13 @@
-const express = require('express');
-const penulisController = require('../controller/penulisController');
-const routePenulis = express.Router();
+const express = require("express")
+const penulisController = require("../controller/penulisController")
+const isAdmin = require("../middleware/isAdmin");
+const isUser = require("../middleware/isUser");
+const routePenulis = express.Router()
 
-routePenulis.post('/', penulisController.create);
-routePenulis.get('/get', penulisController.getAll);
-routePenulis.get('/get/:id', penulisController.getById);
-routePenulis.put('/update/:id', penulisController.update);
-routePenulis.delete('/delete/:id', penulisController.delete);
+routePenulis.post('/', isAdmin, penulisController.create)
+routePenulis.get('/get', isUser, penulisController.getAll)
+routePenulis.get('/get/:id', isUser, penulisController.getById)
+routePenulis.put('/update/:id', isAdmin, penulisController.update)
+routePenulis.delete('/delete/:id', isAdmin, penulisController.delete)
 
-module.exports = routePenulis;
+module.exports = routePenulis
