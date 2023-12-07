@@ -73,5 +73,27 @@ userController.login = async (req, res) => {
     }
 }
 
+userController.register = async (req, res) => {
+    const { username, email, password, role } = req.body
+    const saltRounds = 10;
+    const generateSalt = await bcrypt.genSalt(saltRounds);
+    const hashPassword = await bcrypt.hash(password, generateSalt);
+    const createUser = await User.create({
+        username: username,
+        email: email,
+        password: hashPassword,
+        role: role,
+        passwordSalt: generateSalt
+    })
+    if (!username || !email || !password || !role) {
+        return res.status(400).json({
+            error: 'Semua field harus diisi',
+        });
+    }
+    return res.status(201).json({
+        message: 'User Berhasil dibuat !'
+    })
+}
+
 module.exports = userController
 
