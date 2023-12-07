@@ -1,7 +1,7 @@
 # Final Project API Perpustakaan
 
 ## Overview
- LibraryKu Merupakan sebuah Sistem API Perpustakaan yang dirancang sebagai solusi komprehensif untuk memenuhi kebutuhan manajemen perpustakaan modern. Test
+ LibraryKu Merupakan sebuah Sistem API Perpustakaan yang dirancang sebagai solusi komprehensif untuk memenuhi kebutuhan manajemen perpustakaan modern.
 
 ### How To Use ?
 * jalankan perintah berikut 
