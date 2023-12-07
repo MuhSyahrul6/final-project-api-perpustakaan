@@ -15,10 +15,14 @@ penulisController.index = async (req, res) => {
 //tambah data penulis
 penulisController.create = async (req, res) => {
     const { nama_penulis, tanggal_lahir, negara_asal } = req.body
-    if (typeof nama_penulis !== 'string' || nama_penulis.trim() == '') {
-        return res.status(400).json({
-            error: 'Nama Penulis harus berupa huruf dan wajib diisi !'
-        })
+    if (typeof nama_penulis !== 'string' || nama_penulis.trim() === '') {
+        return res.status(400).json({ error: 'Nama Penulis harus berupa Huruf dan wajib diisi' });
+    }
+    if (typeof tanggal_lahir !== 'string' || tanggal_lahir.trim() === '') {
+        return res.status(400).json({ error: 'Tanggal Lahir harus berupa Huruf dan wajib diisi' });
+    }
+    if (typeof negara_asal !== 'string' || negara_asal.trim() === '') {
+        return res.status(400).json({ error: 'Negara Asal harus berupa Huruf dan wajib diisi' });
     }
     try {
         const createPenulis = await Penulis.create({
@@ -30,8 +34,10 @@ penulisController.create = async (req, res) => {
             message: 'Data Berhasil Ditambahkan!'
         })
     } catch (error) {
+        console.log(error);
         return res.status(500).json({
-            message: error
+            error: 'Internal Server Error',
+            message: error.message
         })
     }
 }
@@ -46,8 +52,10 @@ penulisController.getAll = async (req, res) => {
             data: getPenulis
         })
     } catch (error) {
+        console.log(error);
         return res.status(500).json({
-            message: error
+            error: 'Internal Server Error',
+            message: error.message
         })
     }
 }
@@ -61,12 +69,19 @@ penulisController.getById = async (req, res) => {
                 id: id
             }
         })
+        if (!getDetailPenulis) {
+            return res.status(404).json({
+                message: 'Data Tidak ditemukan !',
+            });
+        }
         return res.status(200).json({
             data: getDetailPnl
         })
     } catch (error) {
+        console.log(error);
         return res.status(500).json({
-            message: error
+            error: 'Internal Server Error',
+            message: error.message
         })
     }
 }
@@ -75,10 +90,14 @@ penulisController.getById = async (req, res) => {
 penulisController.update = async (req, res) => {
     const { nama_penulis, tanggal_lahir, negara_asal } = req.body
     const id = req.params.id
-    if (typeof nama_penulis !== 'string' || nama_penulis.trim() == '') {
-        return res.status(400).json({
-            error: 'Nama Penulis harus berupa huruf dan wajib diisi !'
-        })
+    if (typeof nama_penulis !== 'string' || nama_penulis.trim() === '') {
+        return res.status(400).json({ error: 'Nama Penulis harus berupa Huruf dan wajib diisi' });
+    }
+    if (typeof tanggal_lahir !== 'string' || tanggal_lahir.trim() === '') {
+        return res.status(400).json({ error: 'Tanggal Lahir harus berupa Huruf dan wajib diisi' });
+    }
+    if (typeof negara_asal !== 'string' || negara_asal.trim() === '') {
+        return res.status(400).json({ error: 'Negara Asal harus berupa Huruf dan wajib diisi' });
     }
     try {
         const getDetailPnl = await Penulis.findOne({
@@ -105,8 +124,10 @@ penulisController.update = async (req, res) => {
             message: 'Data Berhasil Diubah!'
         })
     } catch (error) {
+        console.log(error);
         return res.status(500).json({
-            message: error
+            error: 'Internal Server Error',
+            message: error.message
         })
     }
 }
@@ -129,8 +150,10 @@ penulisController.delete = async (req, res) => {
             message: 'Data Berhasil Dihapus!'
         })
     } catch (error) {
+        console.log(error);
         return res.status(500).json({
-            message: error
+            error: 'Internal Server Error',
+            message: error.message
         })
     }
 }
