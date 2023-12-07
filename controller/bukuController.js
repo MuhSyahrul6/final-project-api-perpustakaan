@@ -14,6 +14,24 @@ bukuController.index = async (req, res) => {
 
 bukuController.create = async (req, res) => {
   const { judul, id_penulis, penerbit, tahun_terbit, jumlah_salinan, id_kategori } = req.body;
+  if (typeof judul !== 'string' || judul.trim() === '') {
+    return res.status(400).json({ error: 'Judul harus berupa huruf dan wajib diisi' });
+  }
+  if (typeof id_penulis !== 'number' || isNaN(id_penulis) || id_penulis <= 0) {
+    return res.status(400).json({ error: 'ID Penulis harus berupa angka dan wajib diisi' });
+  }
+  if (typeof penerbit !== 'string' || penerbit.trim() === '') {
+    return res.status(400).json({ error: 'Penerbit harus berupa Huruf dan wajib diisi' });
+  }
+  if (typeof tahun_terbit !== 'number' || isNaN(tahun_terbit) || tahun_terbit <= 0) {
+    return res.status(400).json({ error: 'Tahun Terbit harus berupa angka dan wajib diisi' });
+  }
+  if (typeof jumlah_salinan !== 'number' || isNaN(jumlah_salinan) || jumlah_salinan <= 0) {
+    return res.status(400).json({ error: 'Jumlah Salinan harus berupa angka dan wajib diisi' });
+  }
+  if (typeof id_kategori !== 'number' || isNaN(id_kategori) || id_kategori <= 0) {
+    return res.status(400).json({ error: 'ID Kategori harus berupa angka dan wajib diisi' });
+  }
   try {
     const getPenulis = await Penulis.findOne({
       where: {
@@ -41,11 +59,13 @@ bukuController.create = async (req, res) => {
       });
     }
   } catch (error) {
+    console.log(error);
     return res.status(500).json({
-      message: error.message,
-    });
+      error: 'Internal Server Error',
+      message: error.message
+    })
   }
-};
+}
 
 bukuController.getAll = async (req, res) => {
   try {
@@ -65,11 +85,13 @@ bukuController.getAll = async (req, res) => {
       data: getBuku,
     });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({
-      message: error.message,
-    });
+      error: 'Internal Server Error',
+      message: error.message
+    })
   }
-};
+}
 
 bukuController.getById = async (req, res) => {
   const { id } = req.params;
@@ -94,16 +116,35 @@ bukuController.getById = async (req, res) => {
       data: getBuku,
     });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({
-      message: error.message,
-    });
+      error: 'Internal Server Error',
+      message: error.message
+    })
   }
-};
+}
 
 bukuController.update = async (req, res) => {
   const { judul, id_penulis, penerbit, tahun_terbit, jumlah_salinan, id_kategori } = req.body;
   const { id } = req.params;
-
+  if (typeof judul !== 'string' || judul.trim() === '') {
+    return res.status(400).json({ error: 'Judul harus berupa huruf dan wajib diisi' });
+  }
+  if (typeof id_penulis !== 'number' || isNaN(id_penulis) || id_penulis <= 0) {
+    return res.status(400).json({ error: 'ID Penulis harus berupa angka dan wajib diisi' });
+  }
+  if (typeof penerbit !== 'string' || penerbit.trim() === '') {
+    return res.status(400).json({ error: 'Penerbit harus berupa Huruf dan wajib diisi' });
+  }
+  if (typeof tahun_terbit !== 'number' || isNaN(tahun_terbit) || tahun_terbit <= 0) {
+    return res.status(400).json({ error: 'Tahun Terbit harus berupa angka dan wajib diisi' });
+  }
+  if (typeof jumlah_salinan !== 'number' || isNaN(jumlah_salinan) || jumlah_salinan <= 0) {
+    return res.status(400).json({ error: 'Jumlah Salinan harus berupa angka dan wajib diisi' });
+  }
+  if (typeof id_kategori !== 'number' || isNaN(id_kategori) || id_kategori <= 0) {
+    return res.status(400).json({ error: 'ID Kategori harus berupa angka dan wajib diisi' });
+  }
   try {
     const getBuku = await Buku.findOne({
       where: {
@@ -122,7 +163,7 @@ bukuController.update = async (req, res) => {
     });
     if (!getBuku || !getPenulis || !getKategori) {
       return res.status(404).json({
-        message: 'Data tidak ditemukan!' 
+        message: 'Data tidak ditemukan!'
       })
     } else {
       const createBuku = await Buku.update(
@@ -145,11 +186,13 @@ bukuController.update = async (req, res) => {
       });
     }
   } catch (error) {
+    console.log(error);
     return res.status(500).json({
-      message: error.message,
-    });
+      error: 'Internal Server Error',
+      message: error.message
+    })
   }
-};
+}
 
 bukuController.delete = async (req, res) => {
   const { id } = req.params;
@@ -169,10 +212,12 @@ bukuController.delete = async (req, res) => {
       message: 'Data berhasil dihapus !',
     });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({
-      message: error.message,
-    });
+      error: 'Internal Server Error',
+      message: error.message
+    })
   }
-};
+}
 
 module.exports = bukuController;
