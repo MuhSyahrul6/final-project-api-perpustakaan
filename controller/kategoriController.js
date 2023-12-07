@@ -16,9 +16,10 @@ kategoriController.create = async (req, res) => {
             message: 'Data Berhasil Ditambahkan !'
         })
     } catch (error) {
-        console.log(error)
+        console.log(error);
         return res.status(500).json({
-            message: error
+            error: 'Internal Server Error',
+            message: error.message
         })
     }
 }
@@ -32,9 +33,10 @@ kategoriController.getAll = async (req, res) => {
             data: getKategori
         })
     } catch (error) {
-        console.log(error)
+        console.log(error);
         return res.status(500).json({
-            message: error
+            error: 'Internal Server Error',
+            message: error.message
         })
     }
 }
@@ -51,9 +53,10 @@ kategoriController.getById = async (req, res) => {
             data: getDetailKategori
         })
     } catch (error) {
-        console.log(error)
+        console.log(error);
         return res.status(500).json({
-            message: error
+            error: 'Internal Server Error',
+            message: error.message
         })
     }
 }
@@ -88,8 +91,9 @@ kategoriController.update = async (req, res) => {
             message: 'Data Berhasil Diubah !'
         })
     } catch (error) {
-        console.log(error)
+        console.log(error);
         return res.status(500).json({
+            error: 'Internal Server Error',
             message: error.message
         })
     }
@@ -113,9 +117,10 @@ kategoriController.delete = async (req, res) => {
             message: 'Data Berhasil Dihapus !'
         })
     } catch (error) {
-        console.log(error)
+        console.log(error);
         return res.status(500).json({
-            message: error
+            error: 'Internal Server Error',
+            message: error.message
         })
     }
 }
