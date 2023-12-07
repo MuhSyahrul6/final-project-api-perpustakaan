@@ -1,12 +1,14 @@
 const express = require("express")
 const peminjamanController = require("../controller/peminjamanController")
+const isAdmin = require("../middleware/isAdmin");
+const isUser = require("../middleware/isUser");
 const routePeminjaman = express.Router()
 
-routePeminjaman.post('/', peminjamanController.create)
-routePeminjaman.get('/get', peminjamanController.getAll)
-routePeminjaman.get('/get/:id', peminjamanController.getById)
-routePeminjaman.put('/update/:id', peminjamanController.update)
-routePeminjaman.post('/pengembalian/:id', peminjamanController.pengembalianBuku);
-routePeminjaman.delete('/delete/:id', peminjamanController.delete)
+routePeminjaman.post('/', isUser, peminjamanController.create)
+routePeminjaman.get('/get', isUser, peminjamanController.getAll)
+routePeminjaman.get('/get/:id', isUser, peminjamanController.getById)
+routePeminjaman.put('/update/:id', isUser, peminjamanController.update)
+routePeminjaman.post('/pengembalian/:id', isUser, peminjamanController.pengembalianBuku);
+routePeminjaman.delete('/delete/:id', isUser, peminjamanController.delete)
 
 module.exports = routePeminjaman
