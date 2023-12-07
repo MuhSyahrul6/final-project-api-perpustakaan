@@ -14,7 +14,15 @@ dendaController.index = async (req, res) => {
 
 dendaController.create = async (req, res) => {
     const { nominal, tanggal_bayar, id_peminjaman } = req.body;
-
+    if (typeof nominal !== 'number' || isNaN(nominal) || nominal <= 0) {
+        return res.status(400).json({ error: 'Nominal harus berupa angka dan wajib diisi' });
+    }
+    if (typeof tanggal_bayar !== 'string' || tanggal_bayar.trim() === '') {
+        return res.status(400).json({ error: 'Tanggal Bayar harus berupa huruf dan wajib diisi' });
+    }
+    if (typeof id_peminjaman !== 'number' || isNaN(id_peminjaman) || id_peminjaman <= 0) {
+        return res.status(400).json({ error: 'ID Peminjaman harus berupa angka dan wajib diisi' });
+    }
     try {
         const getPeminjaman = await Peminjaman.findOne({
             where: {
@@ -122,7 +130,15 @@ dendaController.getById = async (req, res) => {
 dendaController.update = async (req, res) => {
     const { id } = req.params;
     const { nominal, tanggal_bayar, id_peminjaman } = req.body;
-
+    if (typeof nominal !== 'number' || isNaN(nominal) || nominal <= 0) {
+        return res.status(400).json({ error: 'Nominal harus berupa angka dan wajib diisi' });
+    }
+    if (typeof tanggal_bayar !== 'string' || tanggal_bayar.trim() === '') {
+        return res.status(400).json({ error: 'Tanggal Bayar harus berupa huruf dan wajib diisi' });
+    }
+    if (typeof id_peminjaman !== 'number' || isNaN(id_peminjaman) || id_peminjaman <= 0) {
+        return res.status(400).json({ error: 'ID Peminjaman harus berupa angka dan wajib diisi' });
+    }
     try {
         const denda = await Denda.findByPk(id);
 
