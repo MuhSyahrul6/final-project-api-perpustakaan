@@ -64,7 +64,7 @@ penulisController.getAll = async (req, res) => {
 penulisController.getById = async (req, res) => {
     const { id } = req.params
     try {
-        const getDetailPnl = await Penulis.findOne({
+        const getDetailPenulis = await Penulis.findOne({
             where: {
                 id: id
             }
@@ -75,7 +75,7 @@ penulisController.getById = async (req, res) => {
             });
         }
         return res.status(200).json({
-            data: getDetailPnl
+            data: getDetailPenulis
         })
     } catch (error) {
         console.log(error);
