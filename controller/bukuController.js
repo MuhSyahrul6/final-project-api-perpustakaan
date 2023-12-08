@@ -112,6 +112,11 @@ bukuController.getById = async (req, res) => {
         id: id,
       },
     });
+    if (!getBuku) {
+      return res.status(404).json({
+        message: 'Data Tidak ditemukan !',
+      });
+    }
     return res.status(200).json({
       data: getBuku,
     });
