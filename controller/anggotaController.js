@@ -19,8 +19,8 @@ anggotaController.create = async (req, res) => {
     if (typeof alamat !== 'string' || alamat.trim() === '') {
         return res.status(400).json({ error: 'Alamat harus berupa Huruf dan wajib diisi' });
     }
-    if (typeof nomor_telepon !== 'string' || nomor_telepon.trim() === '') {
-        return res.status(400).json({ error: 'Nomor Telepon harus berupa Huruf dan wajib diisi' });
+    if (typeof nomor_telepon !== 'string' || nomor_telepon.trim() === '' || !/^[0-9+]+$/.test(nomor_telepon)) {
+        return res.status(400).json({ error: 'Nomor Telepon harus berupa Angka dan wajib diisi' });
     }
     if (typeof email !== 'string' || email.trim() === '' || !/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$/.test(email)) {
         return res.status(400).json({ error: 'Email harus valid dan wajib diisi' });
@@ -96,13 +96,13 @@ anggotaController.update = async (req, res) => {
     if (typeof alamat !== 'string' || alamat.trim() === '') {
         return res.status(400).json({ error: 'Alamat harus berupa Huruf dan wajib diisi' });
     }
-    if (typeof nomor_telepon !== 'string' || nomor_telepon.trim() === '') {
-        return res.status(400).json({ error: 'Nomor Telepon harus berupa Huruf dan wajib diisi' });
+    if (typeof nomor_telepon !== 'string' || nomor_telepon.trim() === '' || !/^[0-9+]+$/.test(nomor_telepon)) {
+        return res.status(400).json({ error: 'Nomor Telepon harus berupa Angka dan wajib diisi' });
     }
     if (typeof email !== 'string' || email.trim() === '' || !/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$/.test(email)) {
         return res.status(400).json({ error: 'Email harus valid dan wajib diisi' });
     }
-    
+
     try {
         const getDetailAnggota = await Anggota.findOne({
             where: {
