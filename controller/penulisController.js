@@ -19,7 +19,25 @@ penulisController.create = async (req, res) => {
         return res.status(400).json({ error: 'Nama Penulis harus berupa Huruf dan wajib diisi' });
     }
     if (typeof tanggal_lahir !== 'string' || tanggal_lahir.trim() === '') {
-        return res.status(400).json({ error: 'Tanggal Lahir harus berupa Huruf dan wajib diisi' });
+        return res.status(400).json({ error: 'Tanggal Lahir harus diisi' });
+    }
+    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+    if (typeof tanggal_lahir !== 'string' || tanggal_lahir.trim() === '' || !dateRegex.test(tanggal_lahir)) {
+        const error = 'Format Tanggal Lahir tidak valid. Gunakan format YYYY-MM-DD.';
+        console.error(error);
+        return res.status(400).json({ error });
+    }
+
+    const inputDate = new Date(tanggal_lahir);
+
+    if (isNaN(inputDate.getTime())) {
+        return res.status(400).json({ error: 'Tanggal Lahir tidak valid.' });
+    }
+    const currentDate = new Date();
+    const minAge = 15;
+
+    if (currentDate.getFullYear() - inputDate.getFullYear() < minAge) {
+        return res.status(400).json({ error: 'Anda belum cukup usia ! , usia Minimal 15 Tahun' });
     }
     if (typeof negara_asal !== 'string' || negara_asal.trim() === '') {
         return res.status(400).json({ error: 'Negara Asal harus berupa Huruf dan wajib diisi' });
@@ -94,7 +112,25 @@ penulisController.update = async (req, res) => {
         return res.status(400).json({ error: 'Nama Penulis harus berupa Huruf dan wajib diisi' });
     }
     if (typeof tanggal_lahir !== 'string' || tanggal_lahir.trim() === '') {
-        return res.status(400).json({ error: 'Tanggal Lahir harus berupa Huruf dan wajib diisi' });
+        return res.status(400).json({ error: 'Tanggal Lahir harus diisi' });
+    }
+    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+    if (typeof tanggal_lahir !== 'string' || tanggal_lahir.trim() === '' || !dateRegex.test(tanggal_lahir)) {
+        const error = 'Format Tanggal Lahir tidak valid. Gunakan format YYYY-MM-DD.';
+        console.error(error);
+        return res.status(400).json({ error });
+    }
+
+    const inputDate = new Date(tanggal_lahir);
+
+    if (isNaN(inputDate.getTime())) {
+        return res.status(400).json({ error: 'Tanggal Lahir tidak valid.' });
+    }
+    const currentDate = new Date();
+    const minAge = 15;
+
+    if (currentDate.getFullYear() - inputDate.getFullYear() < minAge) {
+        return res.status(400).json({ error: 'Anda belum cukup usia ! , usia Minimal 15 Tahun' });
     }
     if (typeof negara_asal !== 'string' || negara_asal.trim() === '') {
         return res.status(400).json({ error: 'Negara Asal harus berupa Huruf dan wajib diisi' });
