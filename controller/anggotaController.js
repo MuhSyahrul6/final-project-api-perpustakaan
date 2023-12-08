@@ -22,9 +22,10 @@ anggotaController.create = async (req, res) => {
     if (typeof nomor_telepon !== 'string' || nomor_telepon.trim() === '') {
         return res.status(400).json({ error: 'Nomor Telepon harus berupa Huruf dan wajib diisi' });
     }
-    if (typeof email !== 'string' || email.trim() === '') {
-        return res.status(400).json({ error: 'Email harus berupa Huruf dan wajib diisi' });
+    if (typeof email !== 'string' || email.trim() === '' || !/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$/.test(email)) {
+        return res.status(400).json({ error: 'Email harus valid dan wajib diisi' });
     }
+
     try {
         const createAnggota = await Anggota.create({
             nama: nama,
@@ -98,9 +99,10 @@ anggotaController.update = async (req, res) => {
     if (typeof nomor_telepon !== 'string' || nomor_telepon.trim() === '') {
         return res.status(400).json({ error: 'Nomor Telepon harus berupa Huruf dan wajib diisi' });
     }
-    if (typeof email !== 'string' || email.trim() === '') {
-        return res.status(400).json({ error: 'Email harus berupa Huruf dan wajib diisi' });
+    if (typeof email !== 'string' || email.trim() === '' || !/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$/.test(email)) {
+        return res.status(400).json({ error: 'Email harus valid dan wajib diisi' });
     }
+    
     try {
         const getDetailAnggota = await Anggota.findOne({
             where: {

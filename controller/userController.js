@@ -94,7 +94,10 @@ userController.register = async (req, res) => {
         role: role,
         passwordSalt: generateSalt
     })
-    if (!username || !email || !password || !role) {
+    if (typeof email !== 'string' || email.trim() === '' || !/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$/.test(email)) {
+        return res.status(400).json({ error: 'Email harus valid dan wajib diisi' });
+    }
+    if (!username || !password || !role) {
         return res.status(400).json({
             error: 'Semua field harus diisi',
         });
