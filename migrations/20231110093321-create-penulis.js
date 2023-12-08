@@ -13,7 +13,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       tanggal_lahir: {
-        type: Sequelize.STRING
+        type: Sequelize.DATE
       },
       negara_asal: {
         type: Sequelize.STRING
