@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Penulis.init({
     nama_penulis: DataTypes.STRING,
-    tanggal_lahir: DataTypes.STRING,
+    tanggal_lahir: DataTypes.DATE,
     negara_asal: DataTypes.STRING
   }, {
     sequelize,
