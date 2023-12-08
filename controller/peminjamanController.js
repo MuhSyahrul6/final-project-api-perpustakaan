@@ -37,7 +37,9 @@ peminjamanController.create = async (req, res) => {
             },
         });
         if (getAnggota === null || getBuku === null) {
-            throw Error('Data Tidak ditemukan !');
+            return res.status(404).json({
+                message: 'Data Tidak ditemukan !'
+            });
         } else {
             const createPeminjaman = await Peminjaman.create({
                 id_anggota,
