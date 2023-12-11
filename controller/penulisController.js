@@ -120,12 +120,6 @@ penulisController.update = async (req, res) => {
     if (isNaN(inputDate.getTime())) {
         return res.status(400).json({ error: 'Tanggal Lahir tidak valid.' });
     }
-    const currentDate = new Date();
-    const minAge = 15;
-
-    if (currentDate.getFullYear() - inputDate.getFullYear() < minAge) {
-        return res.status(400).json({ error: 'Anda belum cukup usia ! , usia Minimal 15 Tahun' });
-    }
     if (typeof negara_asal !== 'string' || negara_asal.trim() === '') {
         return res.status(400).json({ error: 'Negara Asal harus berupa Huruf dan wajib diisi' });
     }
