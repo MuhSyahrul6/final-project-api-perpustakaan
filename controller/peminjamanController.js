@@ -22,8 +22,33 @@ peminjamanController.create = async (req, res) => {
     if (typeof tanggal_peminjaman !== 'string' || tanggal_peminjaman.trim() === '') {
         return res.status(400).json({ error: 'Tanggal Peminjaman harus berupa Huruf dan wajib diisi' });
     }
+    const datePeminjaman = /^\d{4}-\d{2}-\d{2}$/;
+    if (typeof tanggal_peminjaman !== 'string' || tanggal_peminjaman.trim() === '' || !datePeminjaman.test(tanggal_peminjaman)) {
+        const error = 'Format Tanggal Peminjaman tidak valid. Gunakan format YYYY-MM-DD.';
+        console.error(error);
+        return res.status(400).json({ error });
+    }
+
+    const inputDatePeminjaman = new Date(tanggal_peminjaman);
+
+    if (isNaN(inputDatePeminjaman.getTime())) {
+        return res.status(400).json({ error: 'Tanggal Peminjaman tidak valid.' });
+    }
+
     if (typeof tanggal_pengembalian !== 'string' || tanggal_pengembalian.trim() === '') {
         return res.status(400).json({ error: 'Tanggal Pengembalian harus berupa Huruf dan wajib diisi' });
+    }
+    const datePengembalian = /^\d{4}-\d{2}-\d{2}$/;
+    if (typeof tanggal_pengembalian !== 'string' || tanggal_pengembalian.trim() === '' || !datePengembalian.test(tanggal_pengembalian)) {
+        const error = 'Format Tanggal Pengembalian tidak valid. Gunakan format YYYY-MM-DD.';
+        console.error(error);
+        return res.status(400).json({ error });
+    }
+
+    const inputDatePengembalian = new Date(tanggal_pengembalian);
+
+    if (isNaN(inputDatePengembalian.getTime())) {
+        return res.status(400).json({ error: 'Tanggal Pengembalian tidak valid.' });
     }
     try {
         const getAnggota = await Anggota.findOne({
