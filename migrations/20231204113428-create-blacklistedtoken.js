@@ -1,22 +1,18 @@
 'use strict';
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Penulis', {
+    await queryInterface.createTable('BlacklistTokens', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      nama_penulis: {
-        type: Sequelize.STRING
-      },
-      tanggal_lahir: {
-        type: Sequelize.DATE
-      },
-      negara_asal: {
-        type: Sequelize.STRING
+      token: {
+        type: Sequelize.TEXT,
+        allowNull: false
       },
       createdAt: {
         allowNull: false,
@@ -29,6 +25,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Penulis');
+    await queryInterface.dropTable('BlacklistTokens');
   }
 };

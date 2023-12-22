@@ -34,6 +34,10 @@ DB_PORT=3306
 ```
 npx sequelize-cli db:migrate 
 ```
+* Kemudian jalankan script dibawah ini untuk Menambahkan Akun Admin untuk Akses Semua Fitur 
+```
+npx sequelize-cli db:seed:all 
+```
 * Coba jalankan menggunakan script dibawah ini : 
 ```
 npm run start
@@ -42,12 +46,8 @@ npm run start
 ```
 http://localhost:3000/
 ```
-### How To Generate Controller Automatic ?
-* untuk membuat controller secara otomatis silahkan jalankan skrip berikut di terminal :
-  ```
-  npm run generate-controller your_controller_name
-  ```
-* jika berhasil maka akan terbuat file controller baru
+# Dokumentasi API Dengan POSTMAN 
+[Link Dokumentasi](https://documenter.getpostman.com/view/29733389/2s9YeK39Wq)
 # Resources 
 * ExpressJs
 * Sequelize
