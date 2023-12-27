@@ -16,17 +16,17 @@ cp .env.example .env
 ```
 * kemudian isikan configurasi pada file `.env` silahkan disesuaikan sendiri
 ```
-APP_NAME = Vocasia Backend Framework
-APP_PORT = 3000
-APP_URL = http://localhost
 NODE_ENV=development
+
+APP_URL = http://localhost
+APP_PORT = 3000
 
 # database
 DB_HOST=127.0.0.1
 DB_DRIVER=mysql
 DB_NAME=perpustakaan
 DB_USER=root
-DB_PASS=""
+DB_PASS=root
 DB_PORT=3306
 
 ```
@@ -42,7 +42,7 @@ npx sequelize-cli db:seed:all
 ```
 npm run start
 ```
-* kemudian coba akses url dibawah ini menggunakan http request app favorit kalian :
+* kemudian akses url dibawah ini menggunakan http request app favorit kalian :
 ```
 http://localhost:3000/
 ```
